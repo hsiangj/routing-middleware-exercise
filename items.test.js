@@ -14,6 +14,7 @@ afterEach(function() {
   items.length = 0;
 })
 
+/** GET /items - returns `{items: [item, ...]}` */
 describe('GET /items', () => {
   test('Get all items', async() => {
     const res = await request(app).get('/items');
@@ -22,6 +23,7 @@ describe('GET /items', () => {
   })
 })
 
+/** GET /items/[name] - return data about one item: `{item: item}` */
 describe('GET /items/:name', () => {
   test('Get item by name', async() => {
     const res = await request(app).get(`/items/${cheetos.name}`);
@@ -34,6 +36,7 @@ describe('GET /items/:name', () => {
   })
 })
 
+/** POST /items - create item from data; return `{item: item}` */
 describe('POST /items', () => {
   test('Creating an item', async() => {
     const newItem = {name:'Kitkat', price:1.05};
@@ -52,6 +55,7 @@ describe('POST /items', () => {
   })
 })
 
+/** PATCH /items/[name] - update item; return `{item: item}` */
 describe('PATCH /items/:name', () => {
   test('Updating an item', async() => {
     const res = await request(app).patch(`/items/${cheetos.name}`).send({name: 'Sourpatch'});
@@ -64,6 +68,8 @@ describe('PATCH /items/:name', () => {
   })
 })
 
+
+/** DELETE /items/[name] - delete item: return {message: "Deleted"}` */
 describe('DELETE /items/:name', () => {
   test('Deleting an item', async() => {
     const res = await request(app).delete(`/items/${cheetos.name}`);
